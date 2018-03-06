@@ -6,10 +6,10 @@ import utils.Properties;
 
 
 public class LoginPage {
-    private WebDriver driver;
-    private By fieldEmail = By.id("email");
-    private By fieldPwd = By.id("passwd");
-    private By buttonLogin = By.name("submitLogin");
+    WebDriver driver;
+    private By emailFieldLocator = By.id("email");
+    private By passwordFieldLocator = By.id("passwd");
+    private By loginButtonLocator = By.name("submitLogin");
     private String email = "webinar.test@gmail.com";
     private String pwd = "Xcg7299bnSmMuRLp9ITw";
 
@@ -22,14 +22,14 @@ public class LoginPage {
     }
 
     public void enterEmail() {
-        driver.findElement(fieldEmail).sendKeys(email);
+        driver.findElement(emailFieldLocator).sendKeys(email);
     }
 
     public void enterPwd() {
-        driver.findElement(fieldPwd).sendKeys(pwd);
+        driver.findElement(passwordFieldLocator).sendKeys(pwd);
     }
 
     public void clickLoginBtn() {
-        driver.findElement(buttonLogin).click();
+        driver.findElement(loginButtonLocator).click();
     }
 }

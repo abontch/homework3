@@ -4,6 +4,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import utils.Properties;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 public class BaseScript {
     /**
@@ -32,6 +33,7 @@ public class BaseScript {
     public static WebDriver getConfiguredDriver() {
         WebDriver driver = getDriver();
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver;
         // TODO configure browser window (set timeouts, browser pindow position) and connect loggers.
         //throw new UnsupportedOperationException("Method doesn't return configured WebDriver instance");
