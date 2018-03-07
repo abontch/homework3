@@ -4,23 +4,34 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+
 public class DashboardPage {
     private WebDriver driver;
-    private By categoryMenuItemLocator = By.id("subtab-AdminCategories");
+    private By categoryMenuLocator = By.id("subtab-AdminCatalog");
+    private By categoriesSubMenuLocator = By.id("subtab-AdminCategories");
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void clickOnCategorySubMenu() {
-        //WebDriverWait wait = new WebDriverWait(driver, 10);
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(categoryMenuItemLocator));
-        WebElement subMenu = driver.findElement(categoryMenuItemLocator);
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click()", subMenu);
+    public void clickOnCategoriesSubMenu() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(categoryMenuLocator));
+
+        WebElement categoryMenuItem = driver.findElement(categoryMenuLocator);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(categoryMenuItem).build().perform();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(categoriesSubMenuLocator));
+
+        categoryMenuItem.findElements(By.cssSelector("li")).get(1).click();
+
+        //JavascriptExecutor executor = (JavascriptExecutor)driver;
+        //executor.executeScript("arguments[0].click()", subMenu);
     }
 
 }
