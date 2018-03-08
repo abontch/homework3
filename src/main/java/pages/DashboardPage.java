@@ -29,9 +29,6 @@ public class DashboardPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(categoriesSubMenuLocator));
 
         categoryMenuItem.findElements(By.cssSelector("li")).get(1).click();
-
-        //JavascriptExecutor executor = (JavascriptExecutor)driver;
-        //executor.executeScript("arguments[0].click()", subMenu);
     }
 
 }

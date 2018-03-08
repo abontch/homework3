@@ -14,7 +14,10 @@ public class CategoriesPage {
     private By addCategoryBtnLocator = By.id("page-header-desc-category-new_category");
     private By categoryNameFieldLocator = By.id("name_1");
     private By saveNewCategoryBtnLocator = By.id("category_form_submit_btn");
-    String categoryName = "";
+    private By categoryPageContentLocator = By.id("content");
+    private By categoryNameFilterLocator = By.cssSelector("[name~=categoryFilter_name]");
+    private By categoryNameCellLocator = By.xpath("//*[@id=\"tr_2_14_1\"]/td[3]");
+    private String categoryName;
 
     public CategoriesPage(WebDriver driver) {
         this.driver = driver;
@@ -54,6 +57,22 @@ public class CategoriesPage {
     }
 
     public void checkSavedCategory() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(categoryPageContentLocator));
+
+        WebElement nameFilter = driver.findElement(categoryNameFilterLocator);
+        nameFilter.sendKeys(categoryName);
+
+        WebElement searchBtn = driver.findElement(By.cssSelector("button#submitFilterButtoncategory"));
+        searchBtn.click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(categoryNameCellLocator));
+        String categoryString = driver.findElement(categoryNameCellLocator).getText();
+        if (categoryString.length() > 0 && categoryString.equals(categoryName)) {
+            System.out.println("The category \"" + categoryString + "\" was created successfully");
+        } else {
+            System.out.println("The category \"" + categoryString + "\" was not found");
+        }
 
     }
 

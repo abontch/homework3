@@ -25,9 +25,9 @@ public class MainScript extends BaseScript {
         categoriesPage.clickOnSaveNewCategoryButton();
 
         // check that new category appears in Categories table
-
+        categoriesPage.checkSavedCategory();
 
         // finish script
-       quiteDriver(driver);
+        quiteDriver(driver);
     }
 }
