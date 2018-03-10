@@ -6,11 +6,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CategoriesPage {
-    private WebDriver driver;
+    private EventFiringWebDriver driver;
     private By addCategoryBtnLocator = By.id("page-header-desc-category-new_category");
     private By categoryNameFieldLocator = By.id("name_1");
     private By saveNewCategoryBtnLocator = By.id("category_form_submit_btn");
@@ -19,7 +20,7 @@ public class CategoriesPage {
     private By categoryNameCellLocator = By.xpath("//*[@id=\"tr_2_14_1\"]/td[3]");
     private String categoryName;
 
-    public CategoriesPage(WebDriver driver) {
+    public CategoriesPage(EventFiringWebDriver driver) {
         this.driver = driver;
     }
 
@@ -29,16 +30,6 @@ public class CategoriesPage {
 
         WebElement addCategoryBtn = driver.findElement(addCategoryBtnLocator);
         addCategoryBtn.click();
-
-       /* Actions actions = new Actions(driver);
-        actions.moveToElement(categoryMenuItem).build().perform();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(categoriesSubMenuLocator));
-
-        categoryMenuItem.findElements(By.cssSelector("li")).get(1).click();
-
-        //JavascriptExecutor executor = (JavascriptExecutor)driver;
-        //executor.executeScript("arguments[0].click()", subMenu);
-        */
     }
 
     public void enterNewCategoryName(String name) {
@@ -73,8 +64,5 @@ public class CategoriesPage {
         } else {
             System.out.println("The category \"" + categoryString + "\" was not found");
         }
-
     }
-
-
 }

@@ -1,4 +1,5 @@
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import pages.CategoriesPage;
 import pages.DashboardPage;
 import pages.LoginPage;
@@ -7,7 +8,7 @@ import pages.LoginPage;
 public class MainScript extends BaseScript {
     public static void main(String[] args) {
 
-        WebDriver driver = getConfiguredDriver();
+        EventFiringWebDriver driver = getConfiguredDriver();
         // login
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();

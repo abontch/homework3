@@ -5,17 +5,18 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 
 public class DashboardPage {
-    private WebDriver driver;
+    private EventFiringWebDriver driver;
     private By categoryMenuLocator = By.id("subtab-AdminCatalog");
     private By categoriesSubMenuLocator = By.id("subtab-AdminCategories");
 
-    public DashboardPage(WebDriver driver) {
+    public DashboardPage(EventFiringWebDriver driver) {
         this.driver = driver;
     }
 
@@ -26,7 +27,7 @@ public class DashboardPage {
         WebElement categoryMenuItem = driver.findElement(categoryMenuLocator);
         Actions actions = new Actions(driver);
         actions.moveToElement(categoryMenuItem).build().perform();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(categoriesSubMenuLocator));
+        wait.until(ExpectedConditions.elementToBeClickable(categoriesSubMenuLocator));
 
         categoryMenuItem.findElements(By.cssSelector("li")).get(1).click();
     }
